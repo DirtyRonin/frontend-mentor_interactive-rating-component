@@ -2,11 +2,21 @@ import React from 'react';
 import './rating.css';
 import iconStar from '../../images/icon-star.svg';
 import { RatingItem } from './rating-item';
+import { useNavigate } from 'react-router-dom';
 
-export function Rating() {
-  const [selectedIndex, setSelectedIndex] = React.useState(-1);
+interface ratingProps {
+  selectedRating: number;
+  setSelectedRating: (index: number) => void;
+}
+
+export function Rating({ selectedRating, setSelectedRating }: ratingProps) {
   const ratingItems = [...Array(6).keys()].slice(1);
-  const isSelected = (currentIndex: number) => selectedIndex === currentIndex;
+  const isSelected = (currentRating: number) => selectedRating === currentRating;
+  const navigate = useNavigate();
+
+  const onSubmit = () => {
+    if (selectedRating > 0) navigate('/thanks');
+  };
 
   return (
     <div className="rating">
@@ -23,11 +33,11 @@ export function Rating() {
       </div>
       <div className="select">
         {ratingItems.map((item, index) => (
-          <RatingItem value={item} selectRating={setSelectedIndex} isSelected={isSelected(item)} key={`rating-item-${index}`} />
+          <RatingItem value={item} setSelectedRating={setSelectedRating} isSelected={isSelected(item)} key={`rating-item-${index}`} />
         ))}
       </div>
       <div>
-        <button className="submit">
+        <button className="submit" onClick={onSubmit}>
           <p>submit</p>
         </button>
       </div>

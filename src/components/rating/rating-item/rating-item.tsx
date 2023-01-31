@@ -4,10 +4,10 @@ import './rating-item.css';
 interface ratingItemProps {
   value: number;
   isSelected: boolean;
-  selectRating: (value: number) => void;
+  setSelectedRating: (value: number) => void;
 }
 
-export function RatingItem({ value, isSelected, selectRating }: ratingItemProps) {
+export function RatingItem({ value, isSelected, setSelectedRating: selectRating }: ratingItemProps) {
   const onSelect = () => selectRating(value);
 
   return (

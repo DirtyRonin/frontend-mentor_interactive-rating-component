@@ -9,6 +9,13 @@
   border-radius: 20px;
 }
 
+@media only screen and (max-width: 600px){
+  .rating{
+    min-width: 370px;
+    width: 80%;
+  }
+}
+
 .rating p {
   font-family: 'overpass';
   margin: 0;
@@ -64,4 +71,8 @@
 .rating .submit:active {
   color: hsl(25, 97%, 53%);
   background-color: white;
+}
+
+.thanking {
+  
 }
